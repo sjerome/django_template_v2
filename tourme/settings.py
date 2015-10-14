@@ -25,7 +25,7 @@ SECRET_KEY = 'oaw9jpoh!1cz1s#19(dzwb@v8dvi4o@#tcn+xyhto^8138p*=)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tourme.nyc', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['tourme-web.herokuapp.com','tourme.nyc', '127.0.0.1:8000']
 
 
 # Application definition
@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tourme.apps.tourme_app'
+    'tourme.apps.tourme_app',
+    'tourme.mytemplates'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG
         },
     },
 ]
@@ -77,8 +79,12 @@ WSGI_APPLICATION = 'tourme.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'tourme',
+            'USER': 'tourme',
+            'PASSWORD': 'tourmeFakePass21!',
+            'HOST': 'localhost', 
+            'PORT': '5432',      
     }
 }
 
